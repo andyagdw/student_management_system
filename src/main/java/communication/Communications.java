@@ -35,7 +35,7 @@ public class Communications {
     }
 
     public static void enterValidCourseId(String text) {
-        System.out.println("\nPlease enter a valid " + text + " course id.\n");
+        System.out.println("\nPlease enter a valid " + text + " course id.");
     }
 
     public static void gradeUpdated() {

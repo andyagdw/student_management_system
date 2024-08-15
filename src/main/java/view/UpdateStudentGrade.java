@@ -16,21 +16,20 @@ public class UpdateStudentGrade {
     }
 
     public int getCourseIdFromUser() {
-        System.out.print("Enter course ID: ");
+        System.out.print("\nEnter course ID:\n");
         int courseId = scanner.nextInt();
         return courseId;
     }
 
     public int getNewStudentGrade(int studentId, int courseId, Student student, String studentGrade) {
-        System.out.println("Enter new grade: ");
-        System.out.println("1 = " + Mark.A);
-        System.out.println("2 = " + Mark.B);
-        System.out.println("3 = " + Mark.C);
-        System.out.println("4 = " + Mark.D);
-        System.out.println("5 = " + Mark.E);
-        System.out.println("6 = " + Mark.F);
-        System.out.println("7 = " + Mark.U);
-        System.out.println("Old grade: " + studentGrade);
+        System.out.println("\nEnter new grade (Old grade: " + studentGrade + ")");
+        System.out.println("1) " + Mark.A);
+        System.out.println("2) " + Mark.B);
+        System.out.println("3) " + Mark.C);
+        System.out.println("4) " + Mark.D);
+        System.out.println("5) " + Mark.E);
+        System.out.println("6) " + Mark.F);
+        System.out.println("7) " + Mark.U);
         
         while (true) {
             int newGrade = scanner.nextInt();

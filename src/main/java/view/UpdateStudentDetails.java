@@ -19,7 +19,7 @@ public class UpdateStudentDetails {
     }
 
     public Student updateStudentDetails(Student student) {
-        System.out.println("Enter new student firstname (leave empty to use old details): ");
+        System.out.println("\nEnter new student firstname (leave empty to use old details): ");
         String studentFirstname = scanner.nextLine();
         if (studentFirstname != "") {
             student.setFirstName(studentFirstname);

@@ -20,26 +20,25 @@ import view.UpdateStudentGrade;
 
 public class UpdateStudent {
 
-    
-    
     int studentId;
     int courseId;
     int gradeId;
+    int oldCourseId;
+    int newCourseId;
     Integer[] ids;
     Student student;
     ArrayList<StudentCourse> studentCourseIds;
     private Scanner scanner;
-    
+
     public UpdateStudent(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    GetStudentId getStudentId = new GetStudentId(scanner);
-    
     public void update(int userOption) {
 
         switch (userOption) {
             case 7: // Upgrade student details
+                GetStudentId getStudentId = new GetStudentId(scanner);
                 UpdateStudentDetails upgradeStudentDetails = new UpdateStudentDetails(scanner);
                 StudentUpdateDAO studentUpdateDAO = new StudentUpdateDAO();
 
@@ -66,11 +65,12 @@ public class UpdateStudent {
                 Communications.studentDetailsUpdated();
                 break;
 
-            case 8:  // Upgrade student grade
+            case 8: // Upgrade student grade
+                GetStudentId getStudentId2 = new GetStudentId(scanner);
                 UpdateStudentGrade updateStudentGrade = new UpdateStudentGrade(scanner);
                 GradeDAO gradeDAO = new GradeDAO();
                 try {  // Handle non-integer values
-                    studentId = getStudentId.getStudentIdFromUser();
+                    studentId = getStudentId2.getStudentIdFromUser();
                     scanner.nextLine();
                 } catch (InputMismatchException e) {
                     Communications.incorrectInput();
@@ -84,47 +84,51 @@ public class UpdateStudent {
                     break;
                 }
 
-                try {  // Handle non-integer values
-                    courseId = updateStudentGrade.getCourseIdFromUser();
-                    scanner.nextLine();
-                } catch (InputMismatchException e) {
-                    Communications.incorrectInput();
-                    scanner.nextLine();
-                    break;
-                }
-
-                studentCourseIds = student.getStudentCourseIds();
-                boolean courseIdInStudentCoursesGrades = Utility.checkValInArr(studentCourseIds, courseId);
-
-                // Check if course ID entered by user exists within student current courses
-                if (!courseIdInStudentCoursesGrades) {
-                    String currentText = "current";
-                    Communications.enterValidCourseId(currentText);
-                    break;
-                }
-
-                // Get student grade
-                String studentGrade = gradeDAO.getStudentGrade(studentId, courseId);
-
-                try {
-                    // Get new student mark
-                    gradeId = updateStudentGrade.getNewStudentGrade(studentId, courseId, student, studentGrade);
-                    scanner.nextLine();
-                } catch (InputMismatchException e) {
-                    Communications.incorrectInput();
-                    scanner.nextLine();
-                    break;
+                while (true) {
+                    try {  // Handle non-integer values
+                        courseId = updateStudentGrade.getCourseIdFromUser();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
+                        Communications.incorrectInput();
+                        scanner.nextLine();
+                        continue;
+                    }
+    
+                    studentCourseIds = student.getStudentCourseIds();
+                    boolean courseIdInStudentCoursesGrades = Utility.checkValInArr(studentCourseIds, courseId);
+    
+                    // Check if course ID entered by user exists within student current courses
+                    if (!courseIdInStudentCoursesGrades) {
+                        String currentText = "current";
+                        Communications.enterValidCourseId(currentText);
+                        continue;
+                    }
+    
+                    // Get student grade
+                    String studentGrade = gradeDAO.getStudentGrade(studentId, courseId);
+    
+                    try {
+                        // Get new student mark
+                        gradeId = updateStudentGrade.getNewStudentGrade(studentId, courseId, student, studentGrade);
+                        scanner.nextLine();
+                        break;
+                    } catch (InputMismatchException e) {
+                        Communications.incorrectInput();
+                        scanner.nextLine();
+                        continue;
+                    }
                 }
                 // Upgrade student grade
                 gradeDAO.updateStudentGrade(studentId, courseId, gradeId);
                 Communications.gradeUpdated();
                 break;
 
-            case 9:  // Upgrade student course
+            case 9: // Upgrade student course
+                GetStudentId getStudentId3 = new GetStudentId(scanner);
                 UpdateStudentCourse updateStudentCourse = new UpdateStudentCourse(scanner);
                 try {
                     // Handle non-integer values
-                    studentId = getStudentId.getStudentIdFromUser();
+                    studentId = getStudentId3.getStudentIdFromUser();
                     scanner.nextLine();
                 } catch (InputMismatchException e) {
                     Communications.incorrectInput();
@@ -139,34 +143,37 @@ public class UpdateStudent {
                     break;
                 }
                 
-                try {  // Handle non-integer values
-                    ids = updateStudentCourse.getOldAndNewCourseId(); // Get old and new course ID
-                    scanner.nextLine();
-                } catch (InputMismatchException e) {
-                    Communications.incorrectInput();
-                    scanner.nextLine();
-                    break;
-                }
-
-                Integer oldCourseId = ids[0];
-                Integer newCourseId = ids[1];
-
-                studentCourseIds = student.getStudentCourseIds();
-
-                boolean oldCourseIdInStudentCoursesGrades = Utility.checkValInArr(studentCourseIds, oldCourseId);
-                int studentCoursesLength = Course.getAllCourses().size();
-
-                // Check if old course ID is valid
-                if (!oldCourseIdInStudentCoursesGrades) {
-                    String oldText = "old";
-                    Communications.enterValidCourseId(oldText);
-                    break;
-                }
-                // Check if new course ID is valid
-                if (newCourseId > studentCoursesLength || newCourseId < 0) {
-                    String newText = "new";
-                    Communications.enterValidCourseId(newText);
-                    break;
+                while (true) {
+                    try {  // Handle non-integer values
+                        ids = updateStudentCourse.getOldAndNewCourseId(); // Get old and new course ID
+                        scanner.nextLine();
+                        
+                        oldCourseId = ids[0];
+                        newCourseId = ids[1];
+        
+                        studentCourseIds = student.getStudentCourseIds();
+        
+                        boolean oldCourseIdInStudentCoursesGrades = Utility.checkValInArr(studentCourseIds, oldCourseId);
+                        int studentCoursesLength = Course.getAllCourses().size();
+        
+                        // Check if old course ID is valid
+                        if (!oldCourseIdInStudentCoursesGrades) {
+                            String oldText = "old";
+                            Communications.enterValidCourseId(oldText);
+                            continue;
+                        }
+                        // Check if new course ID is valid
+                        if (newCourseId > studentCoursesLength || newCourseId < 1) {
+                            String newText = "new";
+                            Communications.enterValidCourseId(newText);
+                            continue;
+                        }
+                        break;
+                    } catch (InputMismatchException e) {
+                        Communications.incorrectInput();
+                        scanner.nextLine();
+                        continue;
+                    }
                 }
                 int oldCourseIdInt = oldCourseId;
                 int newCourseIdInt = newCourseId;

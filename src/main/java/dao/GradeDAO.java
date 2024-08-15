@@ -37,7 +37,6 @@ public class GradeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(mark);
         return mark;
     }
 }

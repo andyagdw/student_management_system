@@ -11,7 +11,7 @@ public class UpdateStudentCourse {
     }
 
     public Integer[] getOldAndNewCourseId() {
-        System.out.println("Enter old course ID:");
+        System.out.println("\nEnter old course ID:");
         int oldCourseId = scanner.nextInt();
         System.out.print("\nEnter new course ID:\n");
         int newCourseId = scanner.nextInt();
