@@ -25,7 +25,7 @@ public class Grade {
         this.grade = grade;
     }
 
-    public ArrayList<Mark> getAllGrades() {
+    public static ArrayList<Mark> getAllGrades() {
         ArrayList<Mark> allGrades = new ArrayList<>();
 
         for (Mark mark : Mark.values()) {

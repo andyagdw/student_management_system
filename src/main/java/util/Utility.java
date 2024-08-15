@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import model.StudentCourse;
 
-public class Comparison {
-    
+public class Utility {
+
     public static boolean checkValInArr(ArrayList<StudentCourse> studentCourseArr, int valToCheck) {
         ArrayList<Integer> courseIdsIntegerArr = new ArrayList<>();
         // Loop through each value and store value as Integer in new array

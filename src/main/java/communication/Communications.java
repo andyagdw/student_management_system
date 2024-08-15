@@ -10,10 +10,6 @@ public class Communications {
         System.out.println("\nStudent with an id of " + studentId + " does not exist.\n");
     }
 
-    public static void enterStudentId() {
-        System.out.println("\nEnter student id: ");
-    }
-
     public static void enterAValue() {
         System.out.println("\nThere was an error. Please enter a value.\n");
     }
@@ -23,7 +19,7 @@ public class Communications {
     }
 
     public static void noStudentsWithMatchingCriteria(String pattern) {
-        System.out.println("\nNo students match this pattern '" + pattern + "'\n.");
+        System.out.println("\nNo students match this pattern '" + pattern + "'.\n");
     }
 
     public static void exitProgram() {
@@ -31,15 +27,11 @@ public class Communications {
     }
 
     public static void studentRemoved() {
-        System.out.println("\nStudent has been successfully removed.");
+        System.out.println("\nStudent has been successfully removed.\n");
     }
 
     public static void studentCreated() {
         System.out.println("\nStudent was successfully added.\n");
-    }
-
-    public static void searchPattern() {
-        System.out.println("\nEnter letter(s) that you would like to search for: ");
     }
 
     public static void enterValidCourseId(String text) {
@@ -50,7 +42,11 @@ public class Communications {
         System.out.println("\nGrade successfully updated.\n");
     }
 
+    public static void courseUpdated() {
+        System.out.println("\nCourse successfully updated.\n");
+    }
+
     public static void studentDetailsUpdated() {
-        System.out.println("Student details successfully updated.");
+        System.out.println("\nStudent details successfully updated.\n");
     }
 }

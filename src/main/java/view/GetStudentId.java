@@ -2,18 +2,15 @@ package view;
 
 import java.util.Scanner;
 
-import communication.Communications;
-
-public class DeleteStudent {
-    
+public class GetStudentId {
     private Scanner scanner;
 
-    public DeleteStudent(Scanner scanner) {
+    public GetStudentId(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public int deleteStudent() {
-        Communications.enterStudentId();
+    public int getStudentIdFromUser() {
+        System.out.println("\nEnter student id: ");
         int userOption = scanner.nextInt();
         return userOption;
     }

@@ -17,15 +17,15 @@ public class CreateStudent {
         this.scanner = scanner;
     }
     
-    public void createStudent() {
+    public void create() {
         AddStudent addStudent = new AddStudent(scanner);
-        // Get student details
+        // Get student details from user
         Student newStudent = addStudent.createNewStudent();
-        // Get student courses
+        // Get student courses from user
         ArrayList<Integer> studentCourses = addStudent.createStudentCourses();
-        // Get student grades
+        // Get student grades from user
         ArrayList<Integer> studentGrades = addStudent.createStudentGrades();
-        // Add them to the database
+        // Add all to the database and create new student
         StudentCreateDAO.addStudent(newStudent);
         int latestStudentId = StudentReadDAO.getLatestAddedStudent();
         StudentCreateDAO.addStudentCourses(latestStudentId, studentCourses);

@@ -6,68 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import constants.Constants;
 import model.Course;
 import model.Grade;
 import model.Course.CourseName;
 import model.Grade.Mark;
 
 public class Database {
-    // DB file
-    private static final String URL = "jdbc:sqlite:student.db";
-    private static final int QUERY_TIMEOUT = 30;
-    // Enable this as SQLite does not do this by default
-    private static final String ENABLE_FOREIGN_KEYS = "PRAGMA foreign_keys = ON";
-
-    // SQL Create table queries
-    private static final String CREATE_STUDENT_TABLE = "CREATE TABLE IF NOT EXISTS Student (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "first_name TEXT NOT NULL, " +
-            "last_name TEXT NOT NULL, " +
-            "gender TEXT NOT NULL, " +
-            "ethnicity TEXT NOT NULL" +
-            ");";
-
-    private static final String CREATE_COURSE_TABLE = "CREATE TABLE IF NOT EXISTS Course (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "course_name TEXT NOT NULL UNIQUE" +
-            ");";
-
-    private static final String CREATE_GRADE_TABLE = "CREATE TABLE IF NOT EXISTS Grade (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "grade TEXT NOT NULL UNIQUE" +
-            ");";
-
-    private static final String CREATE_STUDENT_GRADE_TABLE = "CREATE TABLE IF NOT EXISTS StudentCourseGrade (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "student_id INTEGER NOT NULL, " +
-            "course_id INTEGER NOT NULL, " +
-            "grade_id INTEGER NOT NULL," +
-            "FOREIGN KEY(student_id) REFERENCES Student(id) ON DELETE CASCADE ON UPDATE CASCADE," +
-            "FOREIGN KEY(course_id) REFERENCES Course(id) ON DELETE CASCADE ON UPDATE CASCADE," +
-            "FOREIGN KEY(grade_id) REFERENCES Grade(id) ON DELETE CASCADE ON UPDATE CASCADE" +
-            ");";
-
-    private static final String CREATE_STUDENT_COURSE_TABLE = "CREATE TABLE IF NOT EXISTS StudentCourse (" +
-            "student_id INTEGER NOT NULL, " +
-            "course_id INTEGER NOT NULL, " +
-            "PRIMARY KEY(student_id, course_id), " +
-            "FOREIGN KEY(student_id) REFERENCES Student(id) ON DELETE CASCADE ON UPDATE CASCADE, " +
-            "FOREIGN KEY(course_id) REFERENCES Course(id) ON DELETE CASCADE ON UPDATE CASCADE" +
-            ");";
-    
-    // SQL insert courses and grades
-    private static final String INSERT_COURSE = "INSERT OR IGNORE INTO Course (course_name) VALUES (?)";
-    private static final String INSERT_GRADE = "INSERT OR IGNORE INTO Grade (grade) VALUES (?)";
-
     public static Connection getConnection() {
         try {
             // Create a database connection
-            Connection connection = DriverManager.getConnection(URL);
+            Connection connection = DriverManager.getConnection(Constants.URL);
             try (Statement statement = connection.createStatement()) {
                 // Maximum time in seconds that the db will wait for a query before throwing
                 // exception
-                statement.setQueryTimeout(QUERY_TIMEOUT);
-                statement.executeUpdate(ENABLE_FOREIGN_KEYS);
+                statement.setQueryTimeout(Constants.QUERY_TIMEOUT);
+                statement.executeUpdate(Constants.ENABLE_FOREIGN_KEYS);
             }
             // Return the established connection
             return connection;
@@ -80,7 +34,7 @@ public class Database {
     }
 
     static void insertCourses(Connection connection) throws SQLException {  // Insert courses into db
-        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COURSE)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.INSERT_COURSE)) {
             for (CourseName courseName : Course.getAllCourses()) {
                 preparedStatement.setString(1, courseName.toString());
                 // Use `addBatch` as similar SQL statements are being executed multiple times
@@ -91,9 +45,8 @@ public class Database {
     }
 
     static void insertGrades(Connection connection) throws SQLException {  // Insert grades into db
-        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_GRADE)) {
-            Grade grade = new Grade();
-            for (Mark mark : grade.getAllGrades()) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.INSERT_GRADE)) {
+            for (Mark mark : Grade.getAllGrades()) {
                 preparedStatement.setString(1, mark.toString());
                 preparedStatement.addBatch();
             }
@@ -104,14 +57,14 @@ public class Database {
     public static void createTables() {
         try (Connection connection = getConnection();
                 Statement statement = connection.createStatement()) {
-            statement.executeUpdate(CREATE_STUDENT_TABLE);
+            statement.executeUpdate(Constants.CREATE_STUDENT_TABLE);
 
-            statement.executeUpdate(CREATE_COURSE_TABLE);
+            statement.executeUpdate(Constants.CREATE_COURSE_TABLE);
             insertCourses(connection);
-            statement.executeUpdate(CREATE_GRADE_TABLE);
+            statement.executeUpdate(Constants.CREATE_GRADE_TABLE);
             insertGrades(connection);
-            statement.executeUpdate(CREATE_STUDENT_GRADE_TABLE);
-            statement.executeUpdate(CREATE_STUDENT_COURSE_TABLE);
+            statement.executeUpdate(Constants.CREATE_STUDENT_GRADE_TABLE);
+            statement.executeUpdate(Constants.CREATE_STUDENT_COURSE_TABLE);
 
         } catch (SQLException e) {
             e.printStackTrace(System.err);

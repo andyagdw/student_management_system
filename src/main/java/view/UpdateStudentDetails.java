@@ -18,12 +18,6 @@ public class UpdateStudentDetails {
         this.scanner = scanner;
     }
 
-    public int getStudentIdFromUser() {
-        Communications.enterStudentId();
-        int student_id = scanner.nextInt();
-        return student_id;
-    }
-
     public Student updateStudentDetails(Student student) {
         System.out.println("Enter new student firstname (leave empty to use old details): ");
         String studentFirstname = scanner.nextLine();
@@ -38,8 +32,8 @@ public class UpdateStudentDetails {
         }
 
         System.out.println("\nEnter new student gender: ");
-        System.out.println("1 = " + Gender.MALE);
-        System.out.println("2 = " + Gender.FEMALE);
+        System.out.println("1) " + Gender.MALE);
+        System.out.println("2) " + Gender.FEMALE);
         System.out.println("Enter any other number to use old details");
         System.out.println("Previous value: " + student.getGender());
         
@@ -66,12 +60,12 @@ public class UpdateStudentDetails {
         }
 
         System.out.println("\nEnter new student ethnicity: ");
-        System.out.println("1 = " + Ethnicity.BLACK);
-        System.out.println("2 = " + Ethnicity.WHITE);
-        System.out.println("3 = " + Ethnicity.ASIAN);
-        System.out.println("4 = " + Ethnicity.WHITE);
-        System.out.println("5 = " + Ethnicity.HISPANIC);
-        System.out.println("6 = " + Ethnicity.OTHER);
+        System.out.println("1) " + Ethnicity.BLACK);
+        System.out.println("2) " + Ethnicity.WHITE);
+        System.out.println("3) " + Ethnicity.ASIAN);
+        System.out.println("4) " + Ethnicity.WHITE);
+        System.out.println("5) " + Ethnicity.HISPANIC);
+        System.out.println("6) " + Ethnicity.OTHER);
         System.out.println("Enter any other number to use old details");
         System.out.println("Previous value: " + student.getEthnicity());
         

@@ -7,7 +7,7 @@ import communication.Communications;
 import dao.StudentReadDAO;
 import dao.StudentRemoveDAO;
 import model.Student;
-import view.DeleteStudent;
+import view.GetStudentId;
 
 public class RemoveStudent {
 
@@ -18,11 +18,11 @@ public class RemoveStudent {
     }
 
     public void remove() {
-        int studentId = -1;  // Initialise variable
-        DeleteStudent deleteStudent = new DeleteStudent(scanner);
+        int studentId;
+        GetStudentId getStudentId = new GetStudentId(scanner);
 
         try {  // Handle non-integer values
-            studentId = deleteStudent.deleteStudent();
+            studentId = getStudentId.getStudentIdFromUser();
             scanner.nextLine();
         } catch (InputMismatchException e) {
             Communications.incorrectInput();
@@ -30,6 +30,7 @@ public class RemoveStudent {
             return;
         }
 
+        // Get student information from database
         Student student = StudentReadDAO.getStudentInfo(studentId);
 
         if (student == null) {
@@ -37,7 +38,19 @@ public class RemoveStudent {
             return;
         }
 
-        StudentRemoveDAO.deleteStudent(studentId);
-        Communications.studentRemoved();
+        System.out.print("\nAre you sure you would like to remove this student? ");
+        System.out.print("This action cannot be undone.");
+        System.out.println("\n'Yes' or 'No':");
+
+        String confirmation = scanner.nextLine();
+
+        if (confirmation.equals("Yes")) {
+            // Remove student
+            StudentRemoveDAO.deleteStudent(studentId);
+            Communications.studentRemoved();
+        } else {
+            System.out.println("\nAction aborted.\n");
+            return;
+        }
     }
 }

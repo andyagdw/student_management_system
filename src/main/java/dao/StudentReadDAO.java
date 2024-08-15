@@ -7,29 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
 import model.Student;
 import model.StudentCourse;
 import model.StudentCourseGrade;
 
 public class StudentReadDAO {
 
-    private static final String GET_LATEST_ADDED_STUDENT_SQL = "SELECT id FROM Student ORDER BY id DESC LIMIT 1;";
-    private static final String STUDENT_DETAILS_SQL = "SELECT * FROM Student WHERE id = ?;";
-    private static final String STUDENT_COURSES_AND_GRADES_SQL = "SELECT c.course_name, g.grade, sg.course_id, sg.grade_id "
-            +
-            "FROM StudentCourseGrade as sg " +
-            "INNER JOIN Course as c ON sg.course_id = c.id " +
-            "INNER JOIN Grade as g ON sg.grade_id = g.id " +
-            "WHERE sg.student_id = ?";
-    private static final String ALL_STUDENTS_SQL = "SELECT * FROM Student";
-    private static final String STUDENT_COURSE_IDS_SQL = "SELECT course_id FROM StudentCourse WHERE student_id = ?;";
-
     public static int getLatestAddedStudent() {
         int studentId = -1;
 
         try (Connection conn = Database.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(
-                        GET_LATEST_ADDED_STUDENT_SQL);
+                        Constants.GET_LATEST_ADDED_STUDENT_SQL);
                 ResultSet rs = pstmt.executeQuery()) {
 
             if (rs.next()) {
@@ -45,9 +35,9 @@ public class StudentReadDAO {
         Student student = null;
 
         try (Connection conn = Database.getConnection();
-                PreparedStatement pstmtStudentDetails = conn.prepareStatement(STUDENT_DETAILS_SQL);
-                PreparedStatement pstmtCoursesAndGrades = conn.prepareStatement(STUDENT_COURSES_AND_GRADES_SQL);
-                PreparedStatement psmtStudentCourseIds = conn.prepareStatement(STUDENT_COURSE_IDS_SQL)) {
+                PreparedStatement pstmtStudentDetails = conn.prepareStatement(Constants.STUDENT_DETAILS_SQL);
+                PreparedStatement pstmtCoursesAndGrades = conn.prepareStatement(Constants.STUDENT_COURSES_AND_GRADES_SQL);
+                PreparedStatement psmtStudentCourseIds = conn.prepareStatement(Constants.STUDENT_COURSE_IDS_SQL)) {
 
             // First query
             pstmtStudentDetails.setInt(1, student_id);
@@ -87,6 +77,7 @@ public class StudentReadDAO {
             if (student != null) {
                 student.setCourseGrades(courseGrades);
                 student.setCourseIds(studentCourseIds);
+                student.setStudentId(student_id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,7 +89,7 @@ public class StudentReadDAO {
         List<Student> students = new ArrayList<>();
 
         try (Connection conn = Database.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(ALL_STUDENTS_SQL);
+                PreparedStatement pstmt = conn.prepareStatement(Constants.ALL_STUDENTS_SQL);
                 ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
@@ -108,6 +99,7 @@ public class StudentReadDAO {
                         Student.Gender.valueOf(rs.getString("gender")),
                         Student.Ethnicity.valueOf(rs.getString("ethnicity")));
                 // Add student to the list
+                student.setStudentId(rs.getInt("id"));
                 students.add(student);
             }
         } catch (SQLException e) {
@@ -133,6 +125,7 @@ public class StudentReadDAO {
                         Student.Gender.valueOf(rs.getString("gender")),
                         Student.Ethnicity.valueOf(rs.getString("ethnicity")));
                 // Add student to the list
+                student.setStudentId(rs.getInt("id"));
                 students.add(student);
             }
         } catch (SQLException e) {
@@ -159,6 +152,7 @@ public class StudentReadDAO {
                         Student.Gender.valueOf(rs.getString("gender")),
                         Student.Ethnicity.valueOf(rs.getString("ethnicity")));
                 // Add student to the list
+                student.setStudentId(rs.getInt("id"));
                 students.add(student);
             }
         } catch (SQLException e) {
@@ -183,6 +177,7 @@ public class StudentReadDAO {
                         Student.Gender.valueOf(rs.getString("gender")),
                         Student.Ethnicity.valueOf(rs.getString("ethnicity")));
                 // Add student to the list
+                student.setStudentId(rs.getInt("id"));
                 students.add(student);
             }
         } catch (SQLException e) {

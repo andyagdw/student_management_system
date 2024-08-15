@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import communication.Communications;
-import controller.MainController;
+import constants.Constants;
 import model.Course;
 import model.Grade;
 import model.Student;
@@ -41,22 +41,20 @@ public class AddStudent {
 
     public int createStudentGender() {
         System.out.println("\nEnter gender: ");
-        System.out.println("1 = " + Gender.MALE);
-        System.out.println("2 = " + Gender.FEMALE);
+        System.out.println("1) " + Gender.MALE);
+        System.out.println("2) " + Gender.FEMALE);
         int studentGender = scanner.nextInt();
-        scanner.nextLine();
         return studentGender;
     }
 
     public int createStudentEthnicity() {
         System.out.println("\nEnter ethnicity: ");
-        System.out.println("1 = " + Ethnicity.BLACK);
-        System.out.println("2 = " + Ethnicity.WHITE);
-        System.out.println("3 = " + Ethnicity.ASIAN);
-        System.out.println("4 = " + Ethnicity.HISPANIC);
-        System.out.println("5 = " + Ethnicity.OTHER);
+        System.out.println("1) " + Ethnicity.BLACK);
+        System.out.println("2) " + Ethnicity.WHITE);
+        System.out.println("3) " + Ethnicity.ASIAN);
+        System.out.println("4) " + Ethnicity.HISPANIC);
+        System.out.println("5) " + Ethnicity.OTHER);
         int studentEthnicity = scanner.nextInt();
-        scanner.nextLine();
         return studentEthnicity;
     }
 
@@ -83,6 +81,7 @@ public class AddStudent {
 
             try {
                 gender = createStudentGender();
+                scanner.nextLine();
             } catch (InputMismatchException e) {
                 Communications.incorrectInput();
                 scanner.nextLine();
@@ -103,6 +102,7 @@ public class AddStudent {
 
             try {
                 ethnicity = createStudentEthnicity();
+                scanner.nextLine();
             } catch (InputMismatchException e) {
                 Communications.incorrectInput();
                 scanner.nextLine();
@@ -124,6 +124,7 @@ public class AddStudent {
                     break;
                 case 5:
                     studentEthnicity = Ethnicity.OTHER;
+                    break;
                 default:
                     Communications.incorrectInput();
                     continue;
@@ -139,12 +140,13 @@ public class AddStudent {
         ArrayList<Integer> studentCourseIds = new ArrayList<>();
         int selectedCourse;
 
-        for (int x = 0; x < MainController.NUM_OF_COURSES; x++) {
-            int choice1 = x + 1;
-            System.out.println("\n" + choice1 + ". Enter student course name: " + "\n");
+        for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
+            int currentCourseChoiceNumber = x + 1;
+            System.out.println("\n" + currentCourseChoiceNumber + ". Enter student course name: " + "\n");
+            // Print out all available courses
             for (int i = 0; i < courses.size(); i++) {
-                int courseNumber = i + 1;
-                System.out.println(courseNumber + ") " + courses.get(i));
+                int courseId = i + 1;
+                System.out.println(courseId + ") " + courses.get(i));
             }
 
             while (true) {
@@ -169,15 +171,15 @@ public class AddStudent {
     }
 
     public ArrayList<Integer> createStudentGrades() {
-        Grade grade = new Grade();
-        int studentGrade = -1;
-        ArrayList<Mark> grades = grade.getAllGrades();
-        ArrayList<Integer> studentGrades = new ArrayList<>();
+        int studentGrade;
         int userOption;
+        ArrayList<Mark> grades = Grade.getAllGrades();
+        ArrayList<Integer> studentGrades = new ArrayList<>();
 
-        for (int x = 0; x < MainController.NUM_OF_COURSES; x++) {
-            int choice1 = x + 1;
-            System.out.println("\n" + choice1 + ". Enter student grade: " + "\n");
+        for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
+            int currentCourseChoiceNumber = x + 1;
+            System.out.println("\n" + currentCourseChoiceNumber + ". Enter student grade: " + "\n");
+            // Print out all grades
             for (int i = 0; i < grades.size(); i++) {
                 int gradePosition = i + 1;
                 System.out.println(gradePosition + ") " + grades.get(i));
@@ -215,6 +217,7 @@ public class AddStudent {
                     studentGrades.add(studentGrade);
                 } catch (InputMismatchException e) {
                     Communications.incorrectInput();
+                    scanner.nextLine();
                     continue;
                 }
                 break;

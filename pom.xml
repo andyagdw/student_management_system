@@ -1,3 +1,4 @@
+<!-- Main file that controls the entire Maven project -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
@@ -6,34 +7,40 @@
     <!-- Model version specifies the POM model version -->
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Group ID: Unique identifier for the group or organization -->
+    <!-- Unique identifier for the group or organisation -->
     <groupId>com.example.student</groupId>
 
-    <!-- Artifact ID: Unique identifier for the specific project -->
+    <!-- Unique identifier for the specific project / Name for the project -->
     <artifactId>student-management-system</artifactId>
 
     <!-- Version: Specific version of the project -->
     <version>1.0.0</version>
 
-    <!-- Project dependencies -->
+    <name>Student Management Sytem</name>
+    <description>A student management system application</description>
+
+    <!-- Project dependencies: Download the required JAR files or libraries -->
+    <!-- Automatically downloaded from Maven Central Repository -->
     <dependencies>
-        <!-- SLF4J API -->
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- Serves as a simple facade or abstraction for various logging frameworks -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.36</version>
         </dependency>
-        
-        <!-- SLF4J No Operation (NOP) Logger -->
-        <!-- No logging -->
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+        <!-- Discards all logging messages -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
             <version>1.7.36</version>
+            <scope>test</scope>
         </dependency>
-        
-        <!-- SQLite JDBC Driver -->
-        <!-- Connects Java app to an SQLite database -->
+
+        <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+        <!-- For accessing and creating SQLite database files in Java -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
@@ -41,7 +48,8 @@
         </dependency>
     </dependencies>
 
-     <!-- Build section for plugins -->
+    <!-- Build section for plugins -->
+    <!-- Run the Main class -->
     <build>
         <plugins>
             <plugin>

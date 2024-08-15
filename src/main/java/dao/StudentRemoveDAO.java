@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class StudentRemoveDAO {
+import constants.Constants;
 
-    private static final String SQL = "DELETE FROM Student WHERE id = ?";
+public class StudentRemoveDAO {
 
     public static void deleteStudent(int studentId) {
 
         try (Connection conn = Database.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+                PreparedStatement pstmt = conn.prepareStatement(Constants.REMOVE_STUDENT_SQL)) {
 
             pstmt.setInt(1, studentId);
             pstmt.executeUpdate();

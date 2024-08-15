@@ -7,20 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDAO {
+import constants.Constants;
 
-    private static final String UPDATE_STUDENT_COURSE_SQL = 
-    "UPDATE StudentCourse SET course_id = ? WHERE student_id = ? AND course_id = ?";
-    private static final String UPDATE_STUDENT_COURSE_GRADE_SQL = 
-    "UPDATE StudentCourseGrade SET course_id = ? WHERE student_id = ? AND course_id = ?";
-    private static final String SELECT_ALL_COURSES_SQL = 
-    "SELECT * FROM Course";
+public class CourseDAO {
 
     // Update student course
     public static void updateStudentCourse(int studentId, int oldCourseId, int newCourseId) {
         try (Connection conn = Database.getConnection();
-                PreparedStatement pstmt1 = conn.prepareStatement(UPDATE_STUDENT_COURSE_SQL);
-                PreparedStatement pstmt2 = conn.prepareStatement(UPDATE_STUDENT_COURSE_GRADE_SQL)) {
+                PreparedStatement pstmt1 = conn.prepareStatement(Constants.UPDATE_STUDENT_COURSE_SQL);
+                PreparedStatement pstmt2 = conn.prepareStatement(Constants.UPDATE_STUDENT_COURSE_GRADE_SQL)) {
             pstmt1.setInt(1, newCourseId);
             pstmt1.setInt(2, studentId);
             pstmt1.setInt(3, oldCourseId);
@@ -38,7 +33,7 @@ public class CourseDAO {
     public static List<String> getAllCourses() {
         List<String> courses = new ArrayList<>();
         try (Connection conn = Database.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SELECT_ALL_COURSES_SQL);
+                PreparedStatement pstmt = conn.prepareStatement(Constants.SELECT_ALL_COURSES_SQL);
                 ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Student {
+    private int studentId;
     private String firstName;
     private String lastName;
     private Gender gender;
@@ -86,8 +87,17 @@ public class Student {
         this.courseIds = courseIds;
     }
 
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
     public String toString() {
-        return "\nFirstname: " + firstName +
+        return "\nStudent ID: " + studentId +
+        "\nFirstname: " + firstName +
         "\nLastname: " + lastName + 
         "\nGender: " + gender +
         "\nEthnicity: " + ethnicity + "\n";

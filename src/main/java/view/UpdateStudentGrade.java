@@ -15,13 +15,6 @@ public class UpdateStudentGrade {
         this.scanner = scanner;
     }
 
-    public int getStudentIdFromUser() {
-        Communications.enterStudentId();
-        int studentId = scanner.nextInt();
-        return studentId;
-
-    }
-
     public int getCourseIdFromUser() {
         System.out.print("Enter course ID: ");
         int courseId = scanner.nextInt();

@@ -10,8 +10,8 @@ public class Menu {
         this.scanner = scanner;
     }
 
-    public int displayMenu() {
-        System.out.println("What would you like to do: ");
+    public int displayMainMenu() {
+        System.out.println("What would you like to do:");
         System.out.println("\n1) Create new student");
         System.out.println("2) View all students");
         System.out.println("3) View a student");
