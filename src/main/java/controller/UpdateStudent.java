@@ -154,6 +154,7 @@ public class UpdateStudent {
                         studentCourseIds = student.getStudentCourseIds();
         
                         boolean oldCourseIdInStudentCoursesGrades = Utility.checkValInArr(studentCourseIds, oldCourseId);
+                        boolean newCourseIdInStudentCoursesGrades = Utility.checkValInArr(studentCourseIds, newCourseId);
                         int studentCoursesLength = Course.getAllCourses().size();
         
                         // Check if old course ID is valid
@@ -163,7 +164,7 @@ public class UpdateStudent {
                             continue;
                         }
                         // Check if new course ID is valid
-                        if (newCourseId > studentCoursesLength || newCourseId < 1) {
+                        if (newCourseId > studentCoursesLength || newCourseId < 1 || newCourseIdInStudentCoursesGrades) {
                             String newText = "new";
                             Communications.enterValidCourseId(newText);
                             continue;
