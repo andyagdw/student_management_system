@@ -9,7 +9,7 @@ personal details, courses, and grades.
 - Update: Modify student information, including personal details, enrolled courses, and
 grades
 - Remove: Remove a student from the database
-- View: Access comphrehensive views of student information plus more.
+- View: Access comphrehensive views of student information plus more
 
 ## Getting started ✅
 
@@ -18,10 +18,10 @@ grades
 - Ensure that you have the latest versions of Java and Apache Maven on your machine
 
 1. Clone the repository: <br>
-    `git clone `
+    `git clone https://github.com/andyagdw/student_management_system.git`
 
 2. Navigate to the project directory: <br>
-    `cd `
+    `cd student_management_system`
 
 3. Build the project with Maven: <br>
     `mvn clean install`
