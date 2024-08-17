@@ -6,16 +6,17 @@ personal details, courses, and grades.
 ## Features ✨
 
 - Create: Add a new student to the database with their details
+- Read: Access comphrehensive views of student information plus more
 - Update: Modify student information, including personal details, enrolled courses, and
-grades
-- Remove: Remove a student from the database
-- View: Access comphrehensive views of student information plus more
+  grades
+- Delete: Remove a student from the database
 
 ## Getting started ✅
 
 ### Prerequisites
 
-- Ensure that you have the latest versions of Java and Apache Maven on your machine
+- Ensure that you have the latest versions of [Java](https://www.oracle.com/uk/java/technologies/downloads/)
+and [Apache Maven](https://maven.apache.org/download.cgi) on your machine
 
 1. Clone the repository: <br>
     `git clone https://github.com/andyagdw/student_management_system.git`
@@ -33,4 +34,4 @@ grades
 ### Contact
 
 If you have any questions or just want to connect, you can reach me on
- [LinkedIn](https://uk.linkedin.com/in/andyagyeidwumah) 👍
+ [LinkedIn](https://uk.linkedin.com/in/andyagyeidwumah) 👍.
