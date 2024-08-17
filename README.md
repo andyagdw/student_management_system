@@ -30,8 +30,11 @@ and [Apache Maven](https://maven.apache.org/download.cgi) on your machine
 4. Run the application: <br>
     `mvn exec:java`
 
+The application will automatically create the `student.db` database file in the `resources` directory if it
+does not exist.
+
 ## Credits
 ### Contact
 
 If you have any questions or just want to connect, you can reach me on
- [LinkedIn](https://uk.linkedin.com/in/andyagyeidwumah) 👍.
+[LinkedIn](https://uk.linkedin.com/in/andyagyeidwumah) 👍.
