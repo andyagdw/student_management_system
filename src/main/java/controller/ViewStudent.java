@@ -59,8 +59,8 @@ public class ViewStudent {
 
                 oneStudent.displayStudentInfo(student);
                 break;
-            case 4: // View student by first and last name
-            case 5:
+            case 4: // View student(s) by first name
+            case 5: // View student(s) by last name
                 ViewStudentName viewStudentName = new ViewStudentName(scanner);
                 viewStudentName.viewStudentName(userOption);
                 break;

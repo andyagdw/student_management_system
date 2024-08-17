@@ -57,7 +57,7 @@ public class MainController {
                     Communications.exitProgram();
                     scanner.close();
                     return;
-                default:  // For integers that are more than nine and less than one
+                default:  // For integers that are more than 11 and less than one
                     Communications.incorrectInput();
             }
         }
