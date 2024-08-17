@@ -26,7 +26,6 @@ public class StudentCreateDAO {
         }
     }
 
-    // Add student courses
     public static void addStudentCourses(int latestStudentId, ArrayList<Integer> studentCourses) {
         for (int i = 0; i < Constants.NUM_OF_COURSES; i++) {
             try (Connection conn = Database.getConnection();
@@ -40,7 +39,6 @@ public class StudentCreateDAO {
         }
     }
 
-    // Add student grades
     public static void addStudentGrades(int latestStudentId, ArrayList<Integer> studentGrades, ArrayList<Integer> studentCourses) {
         for (int i = 0; i < Constants.NUM_OF_COURSES; i++) {
             try (Connection conn = Database.getConnection();

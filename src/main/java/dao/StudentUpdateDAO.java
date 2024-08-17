@@ -9,7 +9,6 @@ import model.Student;
 
 public class StudentUpdateDAO {
     
-    // Update student details
     public void updateStudentDetails(Student student, int id) {
 
         try (Connection conn = Database.getConnection();

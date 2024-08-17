@@ -11,7 +11,6 @@ import constants.Constants;
 
 public class CourseDAO {
 
-    // Update student course
     public static void updateStudentCourse(int studentId, int oldCourseId, int newCourseId) {
         try (Connection conn = Database.getConnection();
                 PreparedStatement pstmt1 = conn.prepareStatement(Constants.UPDATE_STUDENT_COURSE_SQL);
