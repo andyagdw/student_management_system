@@ -153,8 +153,9 @@ public class AddStudent {
                 try {
                     selectedCourse = scanner.nextInt();
                     scanner.nextLine();
-                    if (selectedCourse < 1 || selectedCourse > courses.size()) {
+                    if (selectedCourse < 1 || selectedCourse > courses.size() || studentCourseIds.contains(selectedCourse)) {
                         System.out.println("\nPlease enter a valid course ID between 1 and " + courses.size() + ".\n");
+                        System.out.println("Please also note that students cannot be enrolled on the same course twice.");
                         continue;
                     } else {
                         studentCourseIds.add(selectedCourse);
