@@ -142,7 +142,8 @@ public class AddStudent {
 
         for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
             int currentCourseChoiceNumber = x + 1;
-            System.out.println("\n" + currentCourseChoiceNumber + ". Enter student course id: " + "\n");
+            System.out.print("\n" + currentCourseChoiceNumber);
+            System.out.print(". Enter student course id: " + "\n");
             // Print out all available courses
             for (int i = 0; i < courses.size(); i++) {
                 int courseId = i + 1;
@@ -153,9 +154,15 @@ public class AddStudent {
                 try {
                     selectedCourse = scanner.nextInt();
                     scanner.nextLine();
-                    if (selectedCourse < 1 || selectedCourse > courses.size() || studentCourseIds.contains(selectedCourse)) {
-                        System.out.println("\nPlease enter a valid course ID between 1 and " + courses.size() + ".\n");
-                        System.out.println("Please also note that students cannot be enrolled on the same course twice.");
+                    if (
+                        selectedCourse < 1 ||
+                        selectedCourse > courses.size() ||
+                        studentCourseIds.contains(selectedCourse)
+                        ) {
+                        System.out.println("\nPlease enter a valid course ID ");
+                        System.out.print("between 1 and " + courses.size() + ".\n");
+                        System.out.println("Please also note that students cannot ");
+                        System.out.print("be enrolled on the same course twice.");
                         continue;
                     } else {
                         studentCourseIds.add(selectedCourse);
@@ -171,7 +178,7 @@ public class AddStudent {
         return studentCourseIds;
     }
 
-    public ArrayList<Integer> createStudentGrades() {
+    public ArrayList<Integer> createStudentGrades(ArrayList<Integer> studentCourses) {
         int studentGrade;
         int userOption;
         ArrayList<Mark> grades = Grade.getAllGrades();
@@ -179,7 +186,8 @@ public class AddStudent {
 
         for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
             int currentCourseChoiceNumber = x + 1;
-            System.out.println("\n" + currentCourseChoiceNumber + ". Enter student grade: " + "\n");
+            System.out.print("\n" + currentCourseChoiceNumber);
+            System.out.print(". Enter student grade for course id " + studentCourses.get(x) + "\n");
             // Print out all grades
             for (int i = 0; i < grades.size(); i++) {
                 int gradePosition = i + 1;

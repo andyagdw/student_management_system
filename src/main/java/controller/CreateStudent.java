@@ -24,7 +24,7 @@ public class CreateStudent {
         // Get student courses from user
         ArrayList<Integer> studentCourses = addStudent.createStudentCourses();
         // Get student grades from user
-        ArrayList<Integer> studentGrades = addStudent.createStudentGrades();
+        ArrayList<Integer> studentGrades = addStudent.createStudentGrades(studentCourses);
         // Add all to the database and create new student
         StudentCreateDAO.addStudent(newStudent);
         int latestStudentId = StudentReadDAO.getLatestAddedStudent();

@@ -40,7 +40,7 @@ public class RemoveStudent {
 
         System.out.print("\nAre you sure you would like to remove this student? ");
         System.out.print("This action cannot be undone.");
-        System.out.println("\n'Yes' or 'No':");
+        System.out.println("\n\n'Yes' or 'No':");
 
         String confirmation = scanner.nextLine();
 

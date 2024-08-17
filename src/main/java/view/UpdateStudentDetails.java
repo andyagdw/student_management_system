@@ -19,13 +19,15 @@ public class UpdateStudentDetails {
     }
 
     public Student updateStudentDetails(Student student) {
-        System.out.println("\nEnter new student firstname (leave empty to use old details): ");
+        System.out.println("\nEnter new student firstname (leave empty to use old details):");
+        System.out.println("Previous value: " + student.getFirstName());
         String studentFirstname = scanner.nextLine();
         if (studentFirstname != "") {
             student.setFirstName(studentFirstname);
         }
 
-        System.out.println("\nEnter new student lastname (leave empty to use old details): ");
+        System.out.println("\nEnter new student lastname (leave empty to use old details):");
+        System.out.println("Previous value: " + student.getLastName());
         String lastname = scanner.nextLine();
         if (lastname != "") {
             student.setLastName(lastname);
@@ -34,7 +36,7 @@ public class UpdateStudentDetails {
         System.out.println("\nEnter new student gender: ");
         System.out.println("1) " + Gender.MALE);
         System.out.println("2) " + Gender.FEMALE);
-        System.out.println("Enter any other number to use old details");
+        System.out.println("\nEnter any other number to use old details");
         System.out.println("Previous value: " + student.getGender());
         
         while (true) {
@@ -66,7 +68,7 @@ public class UpdateStudentDetails {
         System.out.println("4) " + Ethnicity.WHITE);
         System.out.println("5) " + Ethnicity.HISPANIC);
         System.out.println("6) " + Ethnicity.OTHER);
-        System.out.println("Enter any other number to use old details");
+        System.out.println("\nEnter any other number to use old details");
         System.out.println("Previous value: " + student.getEthnicity());
         
         while (true) {
