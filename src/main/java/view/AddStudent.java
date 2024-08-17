@@ -142,7 +142,7 @@ public class AddStudent {
 
         for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
             int currentCourseChoiceNumber = x + 1;
-            System.out.println("\n" + currentCourseChoiceNumber + ". Enter student course name: " + "\n");
+            System.out.println("\n" + currentCourseChoiceNumber + ". Enter student course id: " + "\n");
             // Print out all available courses
             for (int i = 0; i < courses.size(); i++) {
                 int courseId = i + 1;
