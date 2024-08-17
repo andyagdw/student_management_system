@@ -28,7 +28,7 @@ public class AddStudent {
     }
 
     public String createStudentFirstName() {
-        System.out.println("Enter first name: ");
+        System.out.println("\nEnter first name: ");
         String studentFirstName = scanner.nextLine();
         return studentFirstName.trim();
     }
@@ -159,9 +159,9 @@ public class AddStudent {
                         selectedCourse > courses.size() ||
                         studentCourseIds.contains(selectedCourse)
                         ) {
-                        System.out.println("\nPlease enter a valid course ID ");
+                        System.out.print("\nPlease enter a valid course ID ");
                         System.out.print("between 1 and " + courses.size() + ".\n");
-                        System.out.println("Please also note that students cannot ");
+                        System.out.print("\nPlease also note that students cannot ");
                         System.out.print("be enrolled on the same course twice.");
                         continue;
                     } else {
@@ -187,7 +187,7 @@ public class AddStudent {
         for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
             int currentCourseChoiceNumber = x + 1;
             System.out.print("\n" + currentCourseChoiceNumber);
-            System.out.print(". Enter student grade for course id " + studentCourses.get(x) + "\n");
+            System.out.print(". Enter student grade for course id " + studentCourses.get(x) + ":\n");
             // Print out all grades
             for (int i = 0; i < grades.size(); i++) {
                 int gradePosition = i + 1;
