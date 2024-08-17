@@ -15,7 +15,7 @@ public class Constants {
 
     // Database
     // DB file
-    public static final String URL = "jdbc:sqlite:student.db";
+    public static final String URL = "jdbc:sqlite:src/main/resources/student.db";
     public static final int QUERY_TIMEOUT = 30;
     // Enable this as SQLite does not do this by default
     public static final String ENABLE_FOREIGN_KEYS = "PRAGMA foreign_keys = ON";
