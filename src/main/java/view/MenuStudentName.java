@@ -16,7 +16,7 @@ public class MenuStudentName {
             System.out.println("\nHow would you like to do this: ");
             System.out.println("\n1) By names that start with the letter(s) I want");
             System.out.println("2) By names that contains the letter(s) I want");
-            System.out.println("3) By names that end with the letter(s) I want:");
+            System.out.println("3) By names that end with the letter(s) I want");
 
             option = scanner.nextInt();
 
