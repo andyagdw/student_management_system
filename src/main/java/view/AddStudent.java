@@ -161,8 +161,7 @@ public class AddStudent {
                         ) {
                         System.out.print("\nPlease enter a valid course ID ");
                         System.out.print("between 1 and " + courses.size() + ".\n");
-                        System.out.print("\nPlease also note that students cannot ");
-                        System.out.print("be enrolled on the same course twice.\n");
+                        Communications.sameCourse();
                         continue;
                     } else {
                         studentCourseIds.add(selectedCourse);

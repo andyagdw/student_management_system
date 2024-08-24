@@ -22,7 +22,7 @@ public class UpdateStudentGrade {
     }
 
     public int getNewStudentGrade(int studentId, int courseId, Student student, String studentGrade) {
-        System.out.println("\nEnter new grade (Old grade: " + studentGrade + ")");
+        System.out.println("\nEnter new grade (Old grade: " + studentGrade + ")\n");
         System.out.println("1) " + Mark.A);
         System.out.println("2) " + Mark.B);
         System.out.println("3) " + Mark.C);

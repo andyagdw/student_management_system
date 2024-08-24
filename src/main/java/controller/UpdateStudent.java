@@ -167,6 +167,7 @@ public class UpdateStudent {
                         if (newCourseId > studentCoursesLength || newCourseId < 1 || newCourseIdInStudentCoursesGrades) {
                             String newText = "new";
                             Communications.enterValidCourseId(newText);
+                            Communications.sameCourse();
                             continue;
                         }
                         break;

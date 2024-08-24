@@ -49,4 +49,8 @@ public class Communications {
     public static void studentDetailsUpdated() {
         System.out.println("\nStudent details successfully updated.\n");
     }
+
+    public static void sameCourse() {
+        System.out.println("\nPlease also note that students cannot be enrolled on the same course twice.\n");
+    }
 }
