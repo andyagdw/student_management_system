@@ -143,7 +143,7 @@ public class AddStudent {
         for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
             int currentCourseChoiceNumber = x + 1;
             System.out.print("\n" + currentCourseChoiceNumber);
-            System.out.print(". Enter student course id: " + "\n");
+            System.out.print(". Enter student course id:\n\n");
             // Print out all available courses
             for (int i = 0; i < courses.size(); i++) {
                 int courseId = i + 1;
@@ -162,7 +162,7 @@ public class AddStudent {
                         System.out.print("\nPlease enter a valid course ID ");
                         System.out.print("between 1 and " + courses.size() + ".\n");
                         System.out.print("\nPlease also note that students cannot ");
-                        System.out.print("be enrolled on the same course twice.");
+                        System.out.print("be enrolled on the same course twice.\n");
                         continue;
                     } else {
                         studentCourseIds.add(selectedCourse);
@@ -187,7 +187,7 @@ public class AddStudent {
         for (int x = 0; x < Constants.NUM_OF_COURSES; x++) {
             int currentCourseChoiceNumber = x + 1;
             System.out.print("\n" + currentCourseChoiceNumber);
-            System.out.print(". Enter student grade for course id " + studentCourses.get(x) + ":\n");
+            System.out.print(". Enter student grade for course id " + studentCourses.get(x) + ":\n\n");
             // Print out all grades
             for (int i = 0; i < grades.size(); i++) {
                 int gradePosition = i + 1;

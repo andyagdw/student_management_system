@@ -33,7 +33,7 @@ public class UpdateStudentDetails {
             student.setLastName(lastname);
         }
 
-        System.out.println("\nEnter new student gender: ");
+        System.out.println("\nEnter new student gender:\n");
         System.out.println("1) " + Gender.MALE);
         System.out.println("2) " + Gender.FEMALE);
         System.out.println("\nEnter any other number to use old details");
@@ -61,13 +61,12 @@ public class UpdateStudentDetails {
             break;
         }
 
-        System.out.println("\nEnter new student ethnicity: ");
+        System.out.println("\nEnter new student ethnicity:\n");
         System.out.println("1) " + Ethnicity.BLACK);
         System.out.println("2) " + Ethnicity.WHITE);
         System.out.println("3) " + Ethnicity.ASIAN);
-        System.out.println("4) " + Ethnicity.WHITE);
-        System.out.println("5) " + Ethnicity.HISPANIC);
-        System.out.println("6) " + Ethnicity.OTHER);
+        System.out.println("4) " + Ethnicity.HISPANIC);
+        System.out.println("5) " + Ethnicity.OTHER);
         System.out.println("\nEnter any other number to use old details");
         System.out.println("Previous value: " + student.getEthnicity());
         
@@ -94,7 +93,7 @@ public class UpdateStudentDetails {
                     student.setEthnicity(Ethnicity.HISPANIC);
                     break;
                 case 5:
-                    student.setEthnicity(Ethnicity.WHITE);
+                    student.setEthnicity(Ethnicity.OTHER);
                     break;
                 default:
                     break;
