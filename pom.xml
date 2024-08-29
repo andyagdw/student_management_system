@@ -13,8 +13,8 @@
     <!-- Unique identifier for the specific project / Name for the project -->
     <artifactId>student-management-system</artifactId>
 
-    <!-- Version: Specific version of the project -->
-    <version>1.0.0</version>
+    <!-- Version: Specific version of the project / A working version, hence snapshot -->
+    <version>1.0-SNAPSHOT</version>
 
     <name>Student Management Sytem</name>
     <description>A student management system application</description>
